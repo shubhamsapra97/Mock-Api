@@ -101,8 +101,10 @@ const AddEditForm = (props) => {
 
             setError("");
             setSuccessMessage(message);
-            resetForm();
-            props.history.replace("/users");
+
+            if (action === "add") {
+                resetForm();
+            }
         } catch(err) {
             console.log("error updating client by admin", err);
         }

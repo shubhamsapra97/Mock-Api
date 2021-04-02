@@ -1,11 +1,12 @@
 import React, {useEffect, useState} from "react";
 import {get, debounce} from "lodash";
 import {withRouter} from "react-router";
+import UserSearch from "../UserSearch/UserSearch";
 import "./UserList.css";
 
 const UserList = (props) => {
     const [users, setUsers] = useState([]);
-    const [userSearchInput, setUserSearchInput] = useState("");
+    const [usersCopy, setUsersCopy] = useState([]);
     const [error, setError] = useState("");
     const [successMessage, setSuccessMessage] = useState("");
 
@@ -17,6 +18,7 @@ const UserList = (props) => {
             const data = await response.json();
             const userList = get(data, "data", []);
             setUsers(userList);
+            setUsersCopy(userList)
         } catch {
             console.log("error fetching users");
         }
@@ -26,8 +28,16 @@ const UserList = (props) => {
         getUsersList();
     }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-    const onUseInputChange = (e) => {
-        setUserSearchInput(e.target.value);
+    const filterUserTable = (searchInput) => {
+        if(!searchInput) return setUsers(usersCopy);
+
+        const filterKeys = ["email", "first_name", "last_name"];
+        const filteredRows = users.filter(user =>
+            filterKeys.some(key =>
+                user[key].toString().toLowerCase().indexOf(searchInput.toLowerCase()) > -1
+            )
+        );
+        setUsers(filteredRows);
     }
 
     const updateUserHandler = (e) => {
@@ -58,16 +68,13 @@ const UserList = (props) => {
         }
     }
 
+    const search = debounce(filterUserTable, 500);
+
     return (
         <div className={"user-list-container"}>
-            <div className={"user-filter-container"}>
-                <input
-                    value={userSearchInput}
-                    className="user-search-input"
-                    onChange={onUseInputChange}
-                    placeholder={"Filter users by email, firstname, lastname"}
-                />
-            </div>
+            <UserSearch
+                onSearch={search}
+            />
             <div className="add-users-container">
                 <button
                     onClick={() => {
@@ -101,9 +108,6 @@ const UserList = (props) => {
                                             onClick={updateUserHandler}
                                             value={JSON.stringify({
                                                 id: user.id,
-                                                email: user.email,
-                                                firstName: user.first_name,
-                                                lastName: user.last_name,
                                             })}
                                             className="action-buttons"
                                         >
