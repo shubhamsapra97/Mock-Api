@@ -58,6 +58,9 @@ const LoginPage = (props) => {
     return (
         <div className="container">
             <form onSubmit={loginHandler} className="login-form">
+                <p className="white-color-text">
+                    {"Note: Add credentials as supported by reqres.in"}
+                </p>
                 <label className="abc">
                     <p>Email:</p>
                     <input
