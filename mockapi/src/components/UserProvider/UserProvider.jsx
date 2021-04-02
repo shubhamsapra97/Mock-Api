@@ -17,12 +17,6 @@ const UserProvider = ({children}) => {
         return !!user;
     }
 
-    const value = {
-        user,
-        updateUser,
-        isLoggedIn,
-    };
-
     return (
         <UserProviderContext.Provider value={{user, updateUser, isLoggedIn}}>
             {children}

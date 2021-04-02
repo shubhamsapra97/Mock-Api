@@ -45,6 +45,16 @@ tr:nth-child(even) {
   font-size: 15px;
 }
 
+.add-users-container {
+  text-align: right;
+  margin: 10px 25px -20px 0;
+}
+
+.message-text {
+  display: block;
+  text-align: center;
+}
+
 @media only screen and (max-width: 874px) {
     .user-list {
       height: 400px;
