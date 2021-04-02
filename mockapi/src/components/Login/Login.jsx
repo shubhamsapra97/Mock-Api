@@ -4,7 +4,7 @@ import {withRouter} from "react-router";
 import {UserProviderContext} from "../UserProvider/UserProvider";
 import "./Login.css";
 
-const LoginPage = (props) => {
+export const LoginPage = (props) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
@@ -68,6 +68,7 @@ const LoginPage = (props) => {
                         type="text"
                         value={email}
                         className="login-input"
+                        data-testid="email-input"
                         onChange={onEmailChange}
                     />
                 </label>
@@ -79,9 +80,13 @@ const LoginPage = (props) => {
                         value={password}
                         className="login-input"
                         onChange={onPasswordChange}
+                        data-testid="password-input"
                     />
                 </label>
-                <button type="submit">
+                <button
+                    type="submit"
+                    data-testid="submit-button"
+                >
                     Login
                 </button>
                 {

@@ -4,7 +4,7 @@ import {withRouter} from "react-router";
 import UserSearch from "../UserSearch/UserSearch";
 import "./UserList.css";
 
-const UserList = (props) => {
+export const UserList = (props) => {
     const [users, setUsers] = useState([]);
     const [usersCopy, setUsersCopy] = useState([]);
     const [error, setError] = useState("");
@@ -99,7 +99,7 @@ const UserList = (props) => {
                     {
                         users.length ? (
                             users.map((user, index) => (
-                                <tr key={index}>
+                                <tr key={index} data-testid="user-rows">
                                     <td>{user.email}</td>
                                     <td>{user.first_name}</td>
                                     <td>{user.last_name}</td>

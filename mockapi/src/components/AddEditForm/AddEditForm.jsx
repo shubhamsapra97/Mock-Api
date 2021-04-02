@@ -1,11 +1,10 @@
 import React, {useEffect, useState} from "react";
 import {get} from "lodash";
 import {withRouter} from "react-router";
-import {useParams} from "react-router-dom";
 import "./AddEditForm.css";
 
-const AddEditForm = (props) => {
-    const { id, action } = useParams();
+export const AddEditForm = (props) => {
+    const { id, action } = props.match.params;
     const [email, setEmail] = useState("");
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
@@ -131,6 +130,7 @@ const AddEditForm = (props) => {
                         type="text"
                         value={email}
                         onChange={onEmailChange}
+                        data-testid="email-input"
                     />
                 </label>
                 <label>
@@ -140,6 +140,7 @@ const AddEditForm = (props) => {
                         type="text"
                         value={firstName}
                         onChange={onFirstNameChange}
+                        data-testid="firstname-input"
                     />
                 </label>
                 <label>
@@ -149,9 +150,13 @@ const AddEditForm = (props) => {
                         type="text"
                         value={lastName}
                         onChange={onLastNameChange}
+                        data-testid="lastname-input"
                     />
                 </label>
-                <button type="submit">
+                <button
+                    type="submit"
+                    data-testid="submit-button"
+                >
                     {
                         action === "edit" ?
                         `Edit User`:

@@ -15,6 +15,7 @@ const UserSearch = ({onSearch}) => {
                 value={userSearchInput}
                 className="user-search-input"
                 onChange={onUserInputChange}
+                data-testid="search-input"
                 placeholder={"Filter users by email, firstname, lastname"}
             />
         </div>
