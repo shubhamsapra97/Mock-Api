@@ -1,0 +1,32 @@
+.App, .App-header, .container {
+  width: 100vw;
+  height: 100vh;
+}
+
+.App-header {
+  background-color: #282c34;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="password"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    height: 30px;
+}
+
+.white-color-text {
+  color: white;
+  margin-top: 20px;
+}
+
+button {
+  background: grey;
+  border: 1px solid white;
+  padding: 10px 30px;
+  cursor: pointer;
+  outline: inherit;
+  margin-top: 20px;
+  font-weight: bold;
+}
