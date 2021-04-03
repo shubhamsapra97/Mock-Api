@@ -109,6 +109,7 @@ export const UserList = (props) => {
                                                 id: user.id,
                                             })}
                                             className="action-buttons"
+                                            data-testid={`edit-btn-${user.id}`}
                                         >
                                             Update
                                         </button>
@@ -120,6 +121,7 @@ export const UserList = (props) => {
                                                 id: user.id
                                             })}
                                             className="action-buttons"
+                                            data-testid={`delete-btn-${user.id}`}
                                         >
                                             Delete
                                         </button>
