@@ -29,10 +29,9 @@ export const UserList = (props) => {
     }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
     const filterUserTable = (searchInput) => {
-        if(!searchInput) return setUsers(usersCopy);
-
+        const usersArray = usersCopy;
         const filterKeys = ["email", "first_name", "last_name"];
-        const filteredRows = users.filter(user =>
+        const filteredRows = usersArray.filter(user =>
             filterKeys.some(key =>
                 user[key].toString().toLowerCase().indexOf(searchInput.toLowerCase()) > -1
             )
